@@ -1,0 +1,93 @@
+* {
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        height: 100%;
+      }
+      
+      body {
+        font-family: "Public Sans", sans-serif;
+        min-height: 100%;
+      }
+      
+
+/* .detailContainer {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 70%;
+  min-height: 50%;
+  font-family: cursive;
+  font-size: 20px;
+  border-radius: 10px;
+  background: #fff;
+  background-image: linear-gradient(#f5f5f0 1.1rem, #ccc 1.2rem);
+  background-size: 100% 1.2rem;
+  line-height: 1.2rem;
+  padding: 1.4rem 0.5rem 0.3rem 4.5rem;
+  box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+} */
+
+.detailContainer{
+        display: grid;
+        gap: 10px;
+        grid-template: 
+        "margin infoContainer imgContainer"   auto
+        "margin stepsContainer stepsContainer"/
+         90px        40vw            40vw 
+        ;
+
+        box-sizing: border-box;
+        min-width: 70%;
+        min-height: 50%;
+        font-family: cursive;
+        font-size: 20px;
+        border-radius: 10px;
+        background: #fff;
+        background-image: linear-gradient(#f5f5f0 1.1rem, #ccc 1.2rem);
+        background-size: 100% 1.2rem;
+        line-height: 1.2rem;
+}
+
+.margin {
+  grid-area: margin;
+  border-right: 4px solid #d88;
+}
+
+.infoContainer{
+        grid-area: infoContainer;
+        border: 3px solid black;
+        padding: 3em;
+}
+
+.imgContainer{
+        grid-area: imgContainer;
+        border: 3px solid red;
+        padding: 3em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+}
+
+.img{
+        max-width: 400px;
+}
+
+.stepsContainer{
+        grid-area: stepsContainer;
+        border: 3px solid blue;
+        padding: 3em;
+}
+
+@media (max-width: 900px) {
+        .detailContainer{
+      
+          grid-template:
+            "margin infoContainer" 
+            "margin imgContainer" 
+            "margin stepsContainer"/
+              20px    auto;
+        }
+      }
