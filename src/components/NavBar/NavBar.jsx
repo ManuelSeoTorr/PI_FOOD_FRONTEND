@@ -8,6 +8,7 @@ const NavBar = ({ currentPage, recipes_per_page, apiRecipes, paginate }) => {
     <div className={style.navContainer}>
       <Link to="/home">HOME</Link>
       <Link to="/create">FORM</Link>
+      <Link to="/about">ABOUT</Link>
       <SearchBar paginate={paginate}/>
       <Paginacion
         currentPage={currentPage}

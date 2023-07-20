@@ -1,0 +1,29 @@
+.aboutBackground{
+    background-image: url("../../assets/backgroundImg/landingpage_background.jpeg");
+    background-size: cover;
+}
+.aboutContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createdBy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tecnologiesContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.technoInfo{
+    display: flex;
+}
+
+.technologieIcon{
+height: 25px;
+}

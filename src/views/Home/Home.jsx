@@ -6,7 +6,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Filter from "../../components/Filter/filter";
 import Order from "../../components/Order/Order";
 
-import style from "./Home.module.css";
+import "./Home.css";
 
 
 
@@ -38,9 +38,12 @@ const Home = () => {
 
   return (
     <>
-      <div className={style.grid_container}>
-        <header className={style.header}>HEADER</header>
-        <nav className={style.navbar}>
+      <div className="grid_container">
+        <header className="header">
+          <h1>FOOD-API</h1>
+          <h4>by Manuel Seoane Torrealba</h4>
+        </header>
+        <nav className="navbar">
           <NavBar
             currentPage={currentPage}
             recipes_per_page={recipes_per_page}
@@ -48,15 +51,14 @@ const Home = () => {
             paginate={paginate}
           />
         </nav>
-        <aside className={style.sidebar}>
-          SIDEBAR
+        <aside className="sidebar">
           <Filter paginate={paginate}/>
           <Order paginate={paginate}/>
         </aside>
-        <article className={style.main}>
+        <article className="main">
           <CardsContainer currentRecipes={currentRecipes} />
         </article>
-        <footer className={style.footer}>FOOTER</footer>
+        <footer className="footer">FOOTER</footer>
       </div>
     </>
   );

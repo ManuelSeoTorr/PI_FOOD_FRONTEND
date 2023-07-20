@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getDiets, postRecipe } from "../../redux/actions";
+import recipeImgHolder from "../../assets/recipeImgHolder2.jpeg"
 
 const validate = (newRecipe) => {
   let errors = {};
@@ -29,7 +30,7 @@ const createRecipe = () => {
     name: "",
     summary: "",
     healthScore: "",
-    imgUri: "",
+    imgUri: recipeImgHolder,
     steps: [],
     diets: [],
   });
@@ -71,27 +72,16 @@ const createRecipe = () => {
     event.preventDefault();
     if (newRecipe.name === "") alert("Missing title");
     if (newRecipe.summary === "") alert("Missing summary");
-    // if (!newRecipe.imgUri) {
+    // if (newRecipe.imgUri === " b") {
     //   setNewRecipe({
     //     ...newRecipe,
-    //     imgUri:
-    //       "https://pixabay.com/es/vectors/libro-cocinero-comer-comida-cocina-1292854/",
+    //     imgUri:"https://cdn.pixabay.com/photo/2014/12/21/23/28/recipe-575434_1280.png",
     //   });
     // }
     if (newRecipe.healthScore > 100 || newRecipe.healthScore < 0)
       alert("Health Score must be between 0 and 100");
-    console.log(newRecipe);
-    dispatch(
-      postRecipe(
-        newRecipe.imgUri
-          ? newRecipe
-          : {
-              ...newRecipe,
-              imgUri:
-                "https://cdn.pixabay.com/photo/2018/03/02/13/38/vegetables-3193196_1280.jpg",
-            }
-      )
-    );
+ 
+    dispatch(postRecipe(newRecipe));
     alert("New recipe has been created");
     setNewRecipe({
       name: "",
@@ -101,7 +91,7 @@ const createRecipe = () => {
       steps: [],
       diets: [],
     });
-    //history.push("/home");
+    history.push("/home");
   };
 
   return (
