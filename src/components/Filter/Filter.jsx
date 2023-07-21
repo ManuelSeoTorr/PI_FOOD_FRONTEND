@@ -15,7 +15,7 @@ const Filter = ({ paginate }) => {
 
   return (
     <select className="classic" onChange={(event) => handleFilterDiets(event)}>
-      <option value="all">Todos los tipos de receta</option>
+      <option value="all">All types of diets</option>
       {diets?.map((diet) => {
         return (
           <option value={diet.name} key={diet.id}>

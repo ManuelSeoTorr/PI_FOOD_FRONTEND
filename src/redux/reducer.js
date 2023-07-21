@@ -51,9 +51,9 @@ const rootReducer = (state = initialState, action) => {
       }
 
     case SORT_BY_NAME:
-      let orderedRecipes = [];
+      let sortedName = [];
       if (action.payload === "AZ") {
-        orderedRecipes = state.filteredRecipes.sort((a, b) => {
+        sortedName = state.filteredRecipes.sort((a, b) => {
           if (a.name.toLowerCase() > b.name.toLowerCase()) {
             return 1;
           }
@@ -63,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
           return 0;
         });
       } else {
-        orderedRecipes = state.filteredRecipes.sort((a, b) => {
+        sortedName = state.filteredRecipes.sort((a, b) => {
           if (a.name.toLowerCase() > b.name.toLowerCase()) {
             return -1;
           }
@@ -73,7 +73,32 @@ const rootReducer = (state = initialState, action) => {
           return 0;
         });
       }
-      return { ...state, filteredRecipes: orderedRecipes };
+      return { ...state, filteredRecipes: sortedName };
+
+    case SORT_BY_HEALTH:
+      let sortedHS = [];
+      if (action.payload === "+hs") {
+        sortedHS = state.filteredRecipes.sort((a, b) => {
+          if (a.healthScore > b.healthScore) {
+            return -1;
+          }
+          if (b.healthScore > a.healthScore) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        sortedHS = state.filteredRecipes.sort((a, b) => {
+          if (a.healthScore > b.healthScore) {
+            return 1;
+          }
+          if (b.healthScore > a.healthScore) {
+            return -1;
+          }
+          return 0;
+        });
+      }
+      return { ...state, filteredRecipes: sortedHS };
 
     default:
       return { ...state };
@@ -81,3 +106,49 @@ const rootReducer = (state = initialState, action) => {
 };
 
 export default rootReducer;
+
+// case SORT:
+//   switch(action.payload){
+//     let sortedRecipes = [];
+//     case "AZ":
+//       sortedRecipes = state.filteredRecipes.sort((a, b) => {
+//         if (a.name.toLowerCase() > b.name.toLowerCase()) {
+//           return 1;
+//         }
+//         if (b.name.toLowerCase() > a.name.toLowerCase()) {
+//           return -1;
+//         }
+//         return 0;
+//       });
+//     case "ZA":
+//       sortedRecipes = state.filteredRecipes.sort((a, b) => {
+//         if (a.name.toLowerCase() > b.name.toLowerCase()) {
+//           return -1;
+//         }
+//         if (b.name.toLowerCase() > a.name.toLowerCase()) {
+//           return 1;
+//         }
+//         return 0;
+//       });
+//     case "+hs":
+//       sortedRecipes = state.filteredRecipes.sort((a, b) => {
+//         if (a.healthScore > b.healthScore) {
+//           return 1;
+//         }
+//         if (b.healthScore > a.healthScore) {
+//           return -1;
+//         }
+//         return 0;
+//       });
+//       case "-hs":
+//         sortedRecipes = state.filteredRecipes.sort((a, b) => {
+//           if (a.healthScore > b.healthScore) {
+//             return -1;
+//           }
+//           if (b.healthScore > a.healthScore) {
+//             return 1;
+//           }
+//           return 0;
+//         });
+
+//   }

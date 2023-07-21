@@ -5,6 +5,7 @@ import { getRecipes, getDiets } from "../../redux/actions";
 import NavBar from "../../components/NavBar/NavBar";
 import Filter from "../../components/Filter/filter";
 import Order from "../../components/Order/Order";
+import SearchBar from "../../components/SearchBar/searchBar";
 
 import "./Home.css";
 
@@ -52,6 +53,7 @@ const Home = () => {
           />
         </nav>
         <aside className="sidebar">
+          <SearchBar paginate={paginate}/>
           <Filter paginate={paginate}/>
           <Order paginate={paginate}/>
         </aside>

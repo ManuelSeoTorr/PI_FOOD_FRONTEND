@@ -6,10 +6,12 @@ import SearchBar from "../SearchBar/searchBar";
 const NavBar = ({ currentPage, recipes_per_page, apiRecipes, paginate }) => {
   return (
     <div className={style.navContainer}>
-      <Link to="/home">HOME</Link>
-      <Link to="/create">FORM</Link>
-      <Link to="/about">ABOUT</Link>
-      <SearchBar paginate={paginate}/>
+      <Link to="/create">
+        <button className="newRecipeButton">New Recipe +</button>
+      </Link>
+      <Link to="/about">
+        <button className="aboutButton">About</button>
+      </Link>
       <Paginacion
         currentPage={currentPage}
         recipes_per_page={recipes_per_page}

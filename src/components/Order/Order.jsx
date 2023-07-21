@@ -1,20 +1,31 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { sortByName } from "../../redux/actions";
+import { sortByHealth, sortByName } from "../../redux/actions";
 
 const Order = ({ paginate }) => {
   const dispatch = useDispatch();
 
   function handleSortName(event) {
-    dispatch(sortByName(event.target.value));
+    if(event.target.value === "AZ" || event.target.value === "ZA"){
+      dispatch(sortByName(event.target.value));
+    } else {
+      dispatch(sortByHealth(event.target.value));
+    }
     paginate(1);
   }
 
   return (
-    <select className="classic" onChange={(event) => handleSortName(event)}>
-      <option value="">Orden Alfabético</option>
+    <select className="classic"  onChange={(event) => handleSortName(event)}>
+      <option value="AZ">SORT</option>
+      <optgroup label="AlphabeticalOrder">
       <option value="AZ">A-Z</option>
       <option value="ZA">Z-A</option>
+      </optgroup>
+      <optgroup label="Helth Score">
+        <option value="+hs">+Healthy</option>
+        <option value="-hs">-Healthy</option>
+      </optgroup>
+
     </select>
   );
 };
