@@ -2,29 +2,18 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getDiets, postRecipe } from "../../redux/actions";
-import recipeImgHolder from "../../assets/recipeImgHolder2.jpeg"
-
-const validate = (newRecipe) => {
-  let errors = {};
-  if (!newRecipe.name) {
-    errors.name = "Nombre requerido";
-  }
-  if (!newRecipe.summary) {
-    errors.summary = "Resumen requerido";
-  }
-  if (newRecipe.healthscore > 100 || newRecipe.healthscore < 0) {
-    errors.healthscore = "El Healt Score debe ser entre 0 y 100";
-  }
-
-  return errors;
-};
+import recipeImgHolder from "../../assets/recipeImgHolder2.jpeg";
+import { validate } from "./validate";
+import { validateDiets } from "./validateDiets";
 
 const createRecipe = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const diets = useSelector((state) => state.diets);
 
-  const [newRecipeSteps, setNewRecipeSteps] = useState("");
+
+  const [checkboxes, setCheckboxes] = useState({});
+  const [newRecipeSteps, setNewRecipeSteps] = useState([]);
   const [errors, setErrors] = useState({});
   const [newRecipe, setNewRecipe] = useState({
     name: "",
@@ -39,25 +28,41 @@ const createRecipe = () => {
     dispatch(getDiets());
   }, [dispatch]);
 
+  function isDisable(){
+
+    return (
+        !newRecipe.name ||
+        !newRecipe.summary ||
+        !newRecipe.healthScore ||
+        !newRecipe.steps.length ||
+        !Object.values(checkboxes).some((value) => value === true) ||
+        errors.name ||
+        errors.summary ||
+        errors.healthScore ||
+        errors.steps ||
+        errors.imgUri ||
+        errors.diets);
+}
   const handleChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
 
     setNewRecipe({ ...newRecipe, [property]: value });
     setErrors(validate({ ...newRecipe, [property]: value }));
+    console.log(errors)
   };
 
   const handleCheckBox = (event) => {
-    const checked = event.target.checked;
-    const value = Number(event.target.value);
-    if (checked) {
-      setNewRecipe({ ...newRecipe, diets: [...newRecipe.diets, value] });
-    }
+    const { value, checked } = event.target;
+    setCheckboxes({ ...checkboxes, [value]: checked });
+    setErrors(validateDiets({ ...checkboxes, [value]: checked }));
+    console.log(errors)
   };
 
   const handleAddStep = (event) => {
     event.preventDefault();
     setNewRecipe({ ...newRecipe, steps: [...newRecipe.steps, newRecipeSteps] });
+    setErrors(validate({ ...newRecipe, steps: [...newRecipe.steps, newRecipeSteps] }))
     setNewRecipeSteps("");
   };
 
@@ -70,17 +75,7 @@ const createRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (newRecipe.name === "") alert("Missing title");
-    if (newRecipe.summary === "") alert("Missing summary");
-    // if (newRecipe.imgUri === " b") {
-    //   setNewRecipe({
-    //     ...newRecipe,
-    //     imgUri:"https://cdn.pixabay.com/photo/2014/12/21/23/28/recipe-575434_1280.png",
-    //   });
-    // }
-    if (newRecipe.healthScore > 100 || newRecipe.healthScore < 0)
-      alert("Health Score must be between 0 and 100");
- 
+
     dispatch(postRecipe(newRecipe));
     alert("New recipe has been created");
     setNewRecipe({
@@ -109,6 +104,7 @@ const createRecipe = () => {
               <input
                 type="text"
                 className="input"
+                placeholder="Title"
                 value={newRecipe.name}
                 name="name"
                 onChange={handleChange}
@@ -120,6 +116,7 @@ const createRecipe = () => {
               <textarea
                 className="input"
                 value={newRecipe.summary}
+                placeholder="Summary"
                 name="summary"
                 onChange={handleChange}
               />
@@ -131,6 +128,7 @@ const createRecipe = () => {
                 type="number"
                 className="input"
                 value={newRecipe.healthScore}
+                placeholder="Health Score(%)"
                 name="healthScore"
                 onChange={handleChange}
               />
@@ -142,6 +140,9 @@ const createRecipe = () => {
           <div className="inputsChecks">
             <fieldset className="checksContainer">
               <legend>Select one or multiple diets</legend>
+              {errors.diets && (
+                <p className="error">{errors.diets}</p>
+              )}
               {diets.map((diet, i) => {
                 return (
                   <div className="checkOrganicer">
@@ -149,7 +150,7 @@ const createRecipe = () => {
                     <input
                       type="checkbox"
                       className="dietCheck"
-                      value={i+1}
+                      value={i + 1}
                       onChange={(event) => handleCheckBox(event)}
                     />
                   </div>
@@ -161,6 +162,9 @@ const createRecipe = () => {
         <section className="steps">
           <div className="stepbystep">
             <legend>Steps: </legend>
+            {errors.steps && (
+                <p className="error">{errors.steps}</p>
+              )}
             <textarea
               className="input"
               value={newRecipeSteps}
@@ -192,7 +196,7 @@ const createRecipe = () => {
           </div>
         </section>
         <div className="submitButton">
-          <button type="submit">Create recipe</button>
+          <button type="submit" disabled={isDisable()}>Create recipe</button>
         </div>
       </form>
     </div>
@@ -200,3 +204,4 @@ const createRecipe = () => {
 };
 
 export default createRecipe;
+

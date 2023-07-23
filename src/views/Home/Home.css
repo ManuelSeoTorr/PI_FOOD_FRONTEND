@@ -60,7 +60,7 @@ body {
     "sidebar" 100px
     "main" auto
     "footer" 100px;
-  height: 100vw;
+  height: 100vh;
 }
 
 @media (min-width: 600px) {
@@ -71,6 +71,7 @@ body {
       "sidebar main" auto
       "footer  footer" 100px /
       300px auto;
+    height: 100vh;
   }
 
   .header{

@@ -15,7 +15,6 @@ const CardsContainer = ({currentRecipes}) => {
                     imgUri = {recipe.imgUri}
                     diets = {recipe.diets}
                     healthScore = {recipe.healthScore}
-                    key = {recipe.id}
                 />
             })}
         </div>

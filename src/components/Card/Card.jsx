@@ -1,39 +1,42 @@
-import style from "./Card.module.css";
+import "./Card.css";
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
-    <div className={style.card}>
-      <div className={style.card_img}>
-        <img className={style.image} src={props.imgUri} alt="" />
+    <div className="card">
+      <div className="card_img">
+        <img className="image" src={props.imgUri} alt="" />
       </div>
 
-      <div className={style.card_info}>
-        <p className={style.text_title}>
+      <div className="card_info">
+        <p className="text_title">
           <Link to={`/detail/${props.id}`}>{props.name}</Link>
         </p>
-        <p className={style.text_body}>
-          <ul className={style.dietsList}>
+        <div className="text_body">
+          <ul className="dietsList">
             {Array.isArray(props.diets) ? (
-              props.diets.map((e) => {
-                return <li>{e}</li>;
+              props.diets.map((e,i) => {
+                return <li key={i}>{e}</li>;
               })
             ) : (
               <p>Diets not available</p>
             )}
           </ul>
-        </p>
+        </div>
       </div>
-      <div className={style.card_footer}>
-        <div className={style.healthScore}>
-          <span className={style.healthScore_number}>{props.healthScore}%</span>
+      <div className="card_footer">
+        <div className="healthScore">
+          <div className="healthInfo">
+            <span>Health Score: </span>
+            <span className="healthScore_number">{props.healthScore}%</span>
+          </div>
           <div
-            className={style.healthScore_percent}
+            className="healthScore_percent"
             style={{ width: props.healthScore + "%" }}
           ></div>
         </div>
-        <div className={style.card_button}>
-          <svg className={style.svg_icon} viewBox="0 0 20 20"></svg>
+        <div className="card_button">
+          <svg className="svg_icon" viewBox="0 0 20 20"></svg>
         </div>
       </div>
     </div>
@@ -41,12 +44,3 @@ const Card = (props) => {
 };
 
 export default Card;
-
-{
-  /* <div className={style.card}>
-            <p>Aca una card</p>
-            <p>{props.name}</p>
-            <p>{props.imgUri}</p>
-            <p>Types of diets:{props.diets}</p>
-        </div> */
-}

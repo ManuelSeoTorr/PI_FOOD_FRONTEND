@@ -4,7 +4,9 @@ import {
   GET_ID_RECIPE,
   GET_NAME_RECIPES,
   GET_DIETS,
+  RESET_DETAIL,
   FILTER_BY_DIET,
+  FILTER_BY_ORIGIN,
   SORT_BY_NAME,
   SORT_BY_HEALTH,
 } from "./types";
@@ -52,8 +54,12 @@ export const getDiets = () => {
   };
 };
 
+export const resetDetail = () => {
+  return { type:RESET_DETAIL}
+};
+
 export const postRecipe = (newRecipe) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       apiRecipe = await axios.post("http://localhost:3001/recipes", newRecipe);
     } catch (error) {
@@ -64,6 +70,10 @@ export const postRecipe = (newRecipe) => {
 
 export const filterByDiet = (diets) => {
   return { type: FILTER_BY_DIET, payload: diets };
+};
+
+export const filterByOrigin = (origin) => {
+  return { type:FILTER_BY_ORIGIN, payload:origin}
 };
 
 export const sortByName = (order) => {

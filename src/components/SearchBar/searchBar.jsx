@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipesByName } from "../../redux/actions";
 
-import style from "./searchBar.module.css";
+import "./searchBar.css";
 
 const SearchBar = ({paginate}) => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const SearchBar = ({paginate}) => {
     <div className="searchContainer">
       <input type="search" onChange={handleChange} />
       <button
-        className={style.buttonAdd}
+        className="buttonAdd"
         onClick={() => {
           handleSearch(name);
         }}

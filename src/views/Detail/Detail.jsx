@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipeById } from "../../redux/actions";
+import { getRecipeById, resetDetail } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import style from "./Detail.module.css";
+import "./Detail.css";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const Detail = () => {
   useEffect(() => {
     console.log("se monto el detail");
     dispatch(getRecipeById(id));
-    console.log("despache");
+    return () => dispatch(resetDetail());
   }, [id]);
 
   const recipeDetail = useSelector((state) => state.idRecipe);
@@ -20,17 +20,22 @@ const Detail = () => {
   console.log(id);
 
   return (
-    <div className={style.detailContainer}>
-      <div className={style.margin}></div>
-      <div className={style.infoContainer}>
-        <h2 className={style.recipe_Title}>{recipeDetail.name}</h2>
+    <div className="detailContainer">
+      <div className="buttonBack">
+        <Link to={"/home"}>
+          <button>Back</button>
+        </Link>
+      </div>
+      <div className="margin"></div>
+      <div className="infoContainer">
+        <h2 className="recipe_Title">{recipeDetail.name}</h2>
         <div className="recipe_Summary">
           <h3>Summary:</h3>
           <p>{recipeDetail.summary}</p>
         </div>
       </div>
-      <div className={style.imgContainer}>
-        <img className={style.img} src={recipeDetail.imgUri} alt=""/>
+      <div className="imgContainer">
+        <img className="img" src={recipeDetail.imgUri} alt="" />
         <div className="diets_Info">
           <h4 className="diets">Diets:</h4>
           <ol>
@@ -48,7 +53,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
-      <div className={style.stepsContainer}>
+      <div className="stepsContainer">
         <h4 className="steps">Step by step:</h4>
         <ol>
           {Array.isArray(recipeDetail.steps) ? (

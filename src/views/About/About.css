@@ -1,11 +1,21 @@
 .aboutBackground{
     background-image: url("../../assets/backgroundImg/landingpage_background.jpeg");
     background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .aboutContainer{
     display: flex;
-    flex-direction: column;
+    gap:15px;
+    backdrop-filter: blur(2.2px);
+    -webkit-backdrop-filter: blur(2.2px);
+    height: 99vh;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .createdBy{

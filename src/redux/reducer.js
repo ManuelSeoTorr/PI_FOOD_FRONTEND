@@ -3,7 +3,9 @@ import {
   GET_NAME_RECIPES,
   GET_ID_RECIPE,
   GET_DIETS,
+  RESET_DETAIL,
   FILTER_BY_DIET,
+  FILTER_BY_ORIGIN,
   SORT_BY_NAME,
   SORT_BY_HEALTH,
 } from "./types";
@@ -13,6 +15,12 @@ const initialState = {
   filteredRecipes: [],
   idRecipe: [],
   diets: [],
+};
+
+const isUUID = (id) => {
+  const regexExp =
+    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+  return regexExp.test(id);
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -33,17 +41,41 @@ const rootReducer = (state = initialState, action) => {
     case GET_DIETS:
       return { ...state, diets: action.payload };
 
+    case RESET_DETAIL:
+      return { ...state, idRecipe: {} };
+
     case FILTER_BY_DIET:
-      const result = state.allRecipes;
+      const resultDiet = state.allRecipes;
       if (action.payload === "all") {
         return {
           ...state,
           filteredRecipes: state.allRecipes,
         };
       } else {
-        const filter = result.filter((recipe) =>
+        const filter = resultDiet.filter((recipe) =>
           recipe.diets?.some((diet) => diet === action.payload)
         );
+        return {
+          ...state,
+          filteredRecipes: filter,
+        };
+      }
+
+    case FILTER_BY_ORIGIN:
+      const resultOrigin = state.allRecipes;
+      if (action.payload === "all") {
+        return {
+          ...state,
+          filteredRecipes: state.allRecipes,
+        };
+      } else if (action.payload === "API") {
+        const filter = resultOrigin.filter((recipe) => !isNaN(recipe.id));
+        return {
+          ...state,
+          filteredRecipes: filter,
+        };
+      } else if (action.payload === "DB") {
+        const filter = resultOrigin.filter((recipe) => isUUID(recipe.id));
         return {
           ...state,
           filteredRecipes: filter,
@@ -106,49 +138,3 @@ const rootReducer = (state = initialState, action) => {
 };
 
 export default rootReducer;
-
-// case SORT:
-//   switch(action.payload){
-//     let sortedRecipes = [];
-//     case "AZ":
-//       sortedRecipes = state.filteredRecipes.sort((a, b) => {
-//         if (a.name.toLowerCase() > b.name.toLowerCase()) {
-//           return 1;
-//         }
-//         if (b.name.toLowerCase() > a.name.toLowerCase()) {
-//           return -1;
-//         }
-//         return 0;
-//       });
-//     case "ZA":
-//       sortedRecipes = state.filteredRecipes.sort((a, b) => {
-//         if (a.name.toLowerCase() > b.name.toLowerCase()) {
-//           return -1;
-//         }
-//         if (b.name.toLowerCase() > a.name.toLowerCase()) {
-//           return 1;
-//         }
-//         return 0;
-//       });
-//     case "+hs":
-//       sortedRecipes = state.filteredRecipes.sort((a, b) => {
-//         if (a.healthScore > b.healthScore) {
-//           return 1;
-//         }
-//         if (b.healthScore > a.healthScore) {
-//           return -1;
-//         }
-//         return 0;
-//       });
-//       case "-hs":
-//         sortedRecipes = state.filteredRecipes.sort((a, b) => {
-//           if (a.healthScore > b.healthScore) {
-//             return -1;
-//           }
-//           if (b.healthScore > a.healthScore) {
-//             return 1;
-//           }
-//           return 0;
-//         });
-
-//   }
