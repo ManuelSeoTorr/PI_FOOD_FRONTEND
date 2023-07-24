@@ -1,21 +1,39 @@
 .landingBackground {
-    background-image: url("../../assets/backgroundImg/landingpage_background.jpeg");
+    background-image: url("../../assets/backgroundImg/landing_backvideo.mov");
     background-size: cover;
 }
 
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
 .landingContainer {
     display: flex;
-    gap:15px;
-    background: rgba(255, 255, 255, 0.19);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(2.2px);
     -webkit-backdrop-filter: blur(2.2px);
-    border: 1px solid rgba(255, 255, 255, 0.24);
     height: 99vh;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.landingText{
+    gap:15px;
+    background: rgba(255, 255, 255, 0.19);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .enterButton {

@@ -14,18 +14,24 @@ body {
   min-height: 100%;
 }
 
+/* .homeContainer{
+
+} */
+
 .grid_container > * {
-  box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.19);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   padding: 10px;
   text-align: center;
 }
 
 .header {
   grid-area: header;
-  background-image: url("../../assets/backgroundImg/header_background.jpg");
+  background-image: url("../../assets/backgroundImg/header_background2.jpg");
   font-size: 1rem;
   font-style: italic;
+  color:  #e8e8e8;
   font-family: math;
 }
 

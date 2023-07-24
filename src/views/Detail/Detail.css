@@ -1,93 +1,58 @@
-* {
-        margin: 0;
-        padding: 0;
-      }
-      
-      html {
-        height: 100%;
-      }
-      
-      body {
-        font-family: "Public Sans", sans-serif;
-        min-height: 100%;
-      }
-      
-
-/* .detailContainer {
-  position: relative;
-  box-sizing: border-box;
-  min-width: 70%;
-  min-height: 50%;
-  font-family: cursive;
-  font-size: 20px;
-  border-radius: 10px;
-  background: #fff;
-  background-image: linear-gradient(#f5f5f0 1.1rem, #ccc 1.2rem);
-  background-size: 100% 1.2rem;
-  line-height: 1.2rem;
-  padding: 1.4rem 0.5rem 0.3rem 4.5rem;
-  box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
-} */
-
 .detailContainer{
-        display: grid;
-        gap: 10px;
-        grid-template: 
-        "margin infoContainer imgContainer"   auto
-        "margin stepsContainer stepsContainer"/
-         90px        40vw            40vw 
-        ;
-
-        box-sizing: border-box;
-        min-width: 70%;
-        min-height: 50%;
-        font-family: cursive;
-        font-size: 20px;
-        border-radius: 10px;
-        background: #fff;
-        background-image: linear-gradient(#f5f5f0 1.1rem, #ccc 1.2rem);
-        background-size: 100% 1.2rem;
-        line-height: 1.2rem;
-}
-
-.margin {
-  grid-area: margin;
-  border-right: 4px solid #d88;
+  background-image: url(../../assets/backgroundImg/landingpage_background.jpeg);
+  background-size: cover;
+  height: 100vh;
 }
 
 .infoContainer{
-        grid-area: infoContainer;
-        border: 3px solid black;
-        padding: 3em;
+  background-image: url(../../assets/backgroundImg/detailtext_background.jpg);
+}
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px; /* Ajusta el margen superior según tus necesidades */
 }
 
-.imgContainer{
-        grid-area: imgContainer;
-        border: 3px solid red;
-        padding: 3em;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
+/* CSS para el contenedor de información */
+.infoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px; /* Ajusta el margen superior según tus necesidades */
 }
 
-.img{
-        max-width: 400px;
+/* CSS para el contenedor de pasos */
+.stepsContainer {
+  margin-top: 20px; /* Ajusta el margen superior según tus necesidades */
 }
 
-.stepsContainer{
-        grid-area: stepsContainer;
-        border: 3px solid blue;
-        padding: 3em;
+/* Alineación de la imagen y los detalles en el contenedor de información */
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 50px; /* Ajusta el margen izquierdo según tus necesidades para el desplazamiento hacia la derecha */
 }
 
-@media (max-width: 900px) {
-        .detailContainer{
-      
-          grid-template:
-            "margin infoContainer" 
-            "margin imgContainer" 
-            "margin stepsContainer"/
-              20px    auto;
-        }
-      }
+/* Estilo para el botón "Back" */
+.buttonBack {
+  color:  #e8e8e8;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: hwb(35 18% 6%);
+  border: 1px solid #e8e8e8;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px hwb(35 18% 6%),
+      -6px -6px 12px #e6bc82;
+}
+
+/* Estilo para los elementos de lista */
+ol,
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

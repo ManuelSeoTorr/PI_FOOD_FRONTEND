@@ -1,11 +1,10 @@
 import Card from "../Card/Card";
 import style from "./CardsContainer.module.css"
-import { useSelector } from "react-redux";
+
 
 
 
 const CardsContainer = ({currentRecipes}) => {
-
     return(
         <div className={style.container}>
             {currentRecipes.map(recipe => {
@@ -14,6 +13,7 @@ const CardsContainer = ({currentRecipes}) => {
                     name = {recipe.name}
                     imgUri = {recipe.imgUri}
                     diets = {recipe.diets}
+                    Diets = {recipe.Diets} 
                     healthScore = {recipe.healthScore}
                 />
             })}

@@ -13,15 +13,19 @@ const Card = (props) => {
           <Link to={`/detail/${props.id}`}>{props.name}</Link>
         </p>
         <div className="text_body">
-          <ul className="dietsList">
-            {Array.isArray(props.diets) ? (
-              props.diets.map((e,i) => {
-                return <li key={i}>{e}</li>;
-              })
-            ) : (
-              <p>Diets not available</p>
-            )}
-          </ul>
+        <ul className="dietsList">
+  {Array.isArray(props.diets) ? (
+    props.diets.map((e, i) => {
+      return <li key={i}>{e}</li>;
+    })
+  ) : Array.isArray(props.Diets) ? (
+    props.Diets.map((e, i) => {
+      return <li key={i}>{e.name}</li>;
+    })
+  ) : (
+    <p>Diets not available</p>
+  )}
+</ul>
         </div>
       </div>
       <div className="card_footer">

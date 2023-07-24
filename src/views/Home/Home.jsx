@@ -15,7 +15,7 @@ const Home = () => {
   
   const dispatch = useDispatch();
   const {filteredRecipes:apiRecipes} = useSelector((state) => state);
-  const apiDiets = useSelector((state=>state.diets));
+
 
   //Paginado
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +38,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="homeContainer">
       <div className="grid_container">
         <header className="header">
           <h1>FOOD-API</h1>
@@ -62,7 +62,7 @@ const Home = () => {
         </article>
         <footer className="footer">FOOTER</footer>
       </div>
-    </>
+    </div>
   );
 };
 

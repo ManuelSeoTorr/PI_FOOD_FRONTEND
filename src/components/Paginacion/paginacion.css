@@ -1,0 +1,46 @@
+.pagContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navButton{
+    color:  #e8e8e8;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: hwb(35 18% 6%);
+    border: 1px solid #e8e8e8;
+}
+
+.numButton{
+    color:  #e8e8e8;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: hwb(35 18% 6%);
+    border: 1px solid #e8e8e8;
+}
+
+.numButton:hover{
+    color: hwb(35 18% 6%);
+    background: #e8e8e8;
+}
+
+.navButton:hover{
+    color: hwb(35 18% 6%);
+    background: #e8e8e8;
+}
+
+.activePag,
+.numButton:active {
+    box-shadow: 6px 6px 12px hwb(35 18% 6%),
+        -6px -6px 12px #e6bc82;
+        color: hwb(35 18% 6%);
+        background: #e8e8e8;
+}
+
+.numButton:focus {
+    box-shadow: 6px 6px 12px hwb(35 18% 6%),
+    -6px -6px 12px #e6bc82;
+}

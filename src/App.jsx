@@ -1,6 +1,6 @@
 import { LandingPage, Home, Detail, Form, About } from "./views";
-import NavBar from "./components/NavBar/NavBar";
 import { Route } from "react-router-dom";
+import "./App.css"
 
 
 function App() {

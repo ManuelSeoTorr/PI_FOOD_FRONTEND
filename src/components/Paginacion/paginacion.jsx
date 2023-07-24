@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./paginacion.module.css"
+import "./paginacion.css"
 const Paginacion = ({currentPage, recipes_per_page, apiRecipes, paginate }) => {
     const pageNum = [];
 
@@ -14,12 +14,13 @@ const Paginacion = ({currentPage, recipes_per_page, apiRecipes, paginate }) => {
         paginate(pageNum.length)
     }
     return(
-        <div className={style.pagContainer}>
-            <button onClick={()=>paginate(currentPage-1)}> 🢀 Prev</button>
+        <div className="pagContainer">
+            <button className="navButton" onClick={()=>paginate(currentPage-1)}> 🢀 Prev</button>
             {pageNum && pageNum.map(number=>{
-                return(<button key={number} onClick={()=>paginate(number)}>{number}</button>)
+                //return(<button className="numButton" key={number} onClick={()=>paginate(number)}>{number}</button>)
+                return(<button className={`numButton ${number===currentPage?"activePag":null}`}key={number} onClick={() => paginate(number)}>{currentPage === number ? <b>{number}</b> : number}</button>)
             })}
-            <button onClick={()=>paginate(currentPage+1)}>Next 🢂 </button>
+            <button className="navButton" onClick={()=>paginate(currentPage+1)}>Next 🢂 </button>
         </div>
     )
 };

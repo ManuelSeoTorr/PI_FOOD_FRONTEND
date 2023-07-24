@@ -21,49 +21,48 @@ const Detail = () => {
 
   return (
     <div className="detailContainer">
-      <div className="buttonBack">
-        <Link to={"/home"}>
-          <button>Back</button>
-        </Link>
-      </div>
-      <div className="margin"></div>
+      <Link to={"/home"}>
+        <button className="buttonBack">Back</button>
+      </Link>
       <div className="infoContainer">
-        <h2 className="recipe_Title">{recipeDetail.name}</h2>
-        <div className="recipe_Summary">
-          <h3>Summary:</h3>
-          <p>{recipeDetail.summary}</p>
+        <div className="infoText">
+          <h1 className="recipe_Title">{recipeDetail.name}</h1>
+          <div className="recipe_Summary">
+            <h3>Summary:</h3>
+            <p>{recipeDetail.summary}</p>
+          </div>
         </div>
-      </div>
-      <div className="imgContainer">
-        <img className="img" src={recipeDetail.imgUri} alt="" />
-        <div className="diets_Info">
-          <h4 className="diets">Diets:</h4>
+        <div className="imgContainer">
+          <img className="img" src={recipeDetail.imgUri} alt="" />
+          <div className="diets_Info">
+            <h4 className="diets">Diets:</h4>
+            <ol>
+              {Array.isArray(recipeDetail.diets) ? (
+                recipeDetail.diets.map((e) => {
+                  return <li>{e}</li>;
+                })
+              ) : (
+                <p>Diets not available</p>
+              )}
+            </ol>
+            <div>
+              <h4>Health Score:</h4>
+              <p>{recipeDetail.healthScore}%</p>
+            </div>
+          </div>
+        </div>
+        <div className="stepsContainer">
+          <h4 className="steps">Step by step:</h4>
           <ol>
-            {Array.isArray(recipeDetail.diets) ? (
-              recipeDetail.diets.map((e) => {
+            {Array.isArray(recipeDetail.steps) ? (
+              recipeDetail.steps.map((e) => {
                 return <li>{e}</li>;
               })
             ) : (
-              <p>Diets not available</p>
+              <p>Steps not available</p>
             )}
           </ol>
-          <div>
-            <h4>Health Score:</h4>
-            <p>{recipeDetail.healthScore}%</p>
-          </div>
         </div>
-      </div>
-      <div className="stepsContainer">
-        <h4 className="steps">Step by step:</h4>
-        <ol>
-          {Array.isArray(recipeDetail.steps) ? (
-            recipeDetail.steps.map((e) => {
-              return <li>{e}</li>;
-            })
-          ) : (
-            <p>Steps not available</p>
-          )}
-        </ol>
       </div>
     </div>
   );
