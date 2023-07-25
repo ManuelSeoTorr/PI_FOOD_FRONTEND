@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getDiets, postRecipe } from "../../redux/actions";
-import recipeImgHolder from "../../assets/recipeImgHolder.jpeg";
+import recipeImgHolder from "../../assets/backgroundImg/recipeImgHolder.jpeg";
 import { validate } from "./validate";
 import { validateDiets } from "./validateDiets";
 import "./Form.css"

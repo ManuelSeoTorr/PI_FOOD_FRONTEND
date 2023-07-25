@@ -33,7 +33,7 @@ const About = () => {
         </div>
         <div className="aboutContainer">
           <h1>About</h1>
-          <p>Breve descripcion de mi persona</p>
+          <p>This single page application was created by Manuel Seoane Torrealba for the full stack bootcamp Henry, in 2023. It was developed with the following</p>
           <div className="tecnologiesContainer">
             <h1>Technologies used in this project:</h1>
             <div className="technoInfo">

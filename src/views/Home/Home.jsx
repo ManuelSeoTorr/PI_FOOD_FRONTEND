@@ -29,19 +29,26 @@ const Home = () => {
     setCurrentPage(pageNum);
   }
   //*
-
+ //estados para filtros y ordenamientos
+  const [filters, setFilters] = useState({});
+  const [orderBy, setOrderBy] = useState("");
+  
+  const resetFiltersAndOrder = () => {
+    setFilters({});
+    setOrderBy("");
+  };
   //reset
-  const reset = () => {
+  const resetSearchBar = () => {
     dispatch(getRecipes());
     paginate(1);
   }
-
+  //
   useEffect(() => {
     //cuando se monta home se hace el dispatch
     console.log("Se monto home");
-    dispatch(getRecipes());
+    dispatch(getRecipes(filters, orderBy));
     dispatch(getDiets());
-  }, [dispatch]);
+  }, [dispatch, filters, orderBy]);
 
   return (
     <div className="homeContainer">
@@ -58,9 +65,10 @@ const Home = () => {
           />
         </nav>
         <aside className="sidebar">
-          <SearchBar paginate={paginate} reset={reset}/>
-          <Filtro paginate={paginate}/>
-          <Order paginate={paginate}/>
+          <SearchBar paginate={paginate} resetSearchBar={resetSearchBar}/>
+          <Filtro paginate={paginate} setFilters={setFilters}/>
+          <Order paginate={paginate} setOrderBy={setOrderBy}/>
+          <button className="resetAll" onClick={resetFiltersAndOrder}>Reset Sort and Filters</button>
         </aside>
         <article className="main">
           <CardsContainer currentRecipes={currentRecipes} />

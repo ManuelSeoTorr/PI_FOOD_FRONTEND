@@ -1,10 +1,11 @@
 .formBackground {
-  background-image: url("../../assets/backgroundImg/landingpage_background.jpeg");
+  background-image: url(/src/assets/backgroundImg/landingpage_background.jpeg);
   background-size: cover;
-  height: 100vh;
+  height: fit-content;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-attachment: fixed;
 }
 .formContainer {
   display: flex;
