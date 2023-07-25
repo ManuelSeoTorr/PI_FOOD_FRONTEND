@@ -3,19 +3,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { filterByDiet, filterByOrigin } from "../../redux/actions";
 
-const Filtro = ({ paginate, setFilters }) => {
+const Filtro = ({ paginate }) => {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
 
   function handleFilterDiets(event) {
     dispatch(filterByDiet(event.target.value));
-    setFilters(event.target.value);
     paginate(1);
   }
  
   function handleFilterOrigin(event){
     dispatch(filterByOrigin(event.target.value));
-    setFilters(event.target.value);
     paginate(1);
   };
   return (

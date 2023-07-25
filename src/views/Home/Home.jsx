@@ -30,13 +30,13 @@ const Home = () => {
   }
   //*
  //estados para filtros y ordenamientos
-  const [filters, setFilters] = useState({});
-  const [orderBy, setOrderBy] = useState("");
+  // const [filters, setFilters] = useState({});
+  // const [orderBy, setOrderBy] = useState("");
   
-  const resetFiltersAndOrder = () => {
-    setFilters({});
-    setOrderBy("");
-  };
+  // const resetFiltersAndOrder = () => {
+  //   setFilters({});
+  //   setOrderBy("");
+  // };
   //reset
   const resetSearchBar = () => {
     dispatch(getRecipes());
@@ -46,9 +46,9 @@ const Home = () => {
   useEffect(() => {
     //cuando se monta home se hace el dispatch
     console.log("Se monto home");
-    dispatch(getRecipes(filters, orderBy));
-    dispatch(getDiets());
-  }, [dispatch, filters, orderBy]);
+    dispatch(getRecipes());
+
+  }, [dispatch]);
 
   return (
     <div className="homeContainer">
@@ -66,9 +66,8 @@ const Home = () => {
         </nav>
         <aside className="sidebar">
           <SearchBar paginate={paginate} resetSearchBar={resetSearchBar}/>
-          <Filtro paginate={paginate} setFilters={setFilters}/>
-          <Order paginate={paginate} setOrderBy={setOrderBy}/>
-          <button className="resetAll" onClick={resetFiltersAndOrder}>Reset Sort and Filters</button>
+          <Filtro paginate={paginate}/>
+          <Order paginate={paginate}/>
         </aside>
         <article className="main">
           <CardsContainer currentRecipes={currentRecipes} />
