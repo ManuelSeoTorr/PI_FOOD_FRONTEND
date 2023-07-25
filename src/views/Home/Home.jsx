@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes, getDiets } from "../../redux/actions";
 import NavBar from "../../components/NavBar/NavBar";
-import Filter from "../../components/Filter/filter";
+import Filtro from "../../components/Filtro/Filtro";
 import Order from "../../components/Order/Order";
 import SearchBar from "../../components/SearchBar/searchBar";
 
@@ -54,7 +54,7 @@ const Home = () => {
         </nav>
         <aside className="sidebar">
           <SearchBar paginate={paginate}/>
-          <Filter paginate={paginate}/>
+          <Filtro paginate={paginate}/>
           <Order paginate={paginate}/>
         </aside>
         <article className="main">

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { filterByDiet, filterByOrigin } from "../../redux/actions";
 
-const Filter = ({ paginate }) => {
+const Filtro = ({ paginate }) => {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
 
@@ -45,4 +45,4 @@ const Filter = ({ paginate }) => {
   );
 };
 
-export default Filter;
+export default Filtro;
