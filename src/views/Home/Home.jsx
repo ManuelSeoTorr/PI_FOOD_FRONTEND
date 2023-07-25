@@ -30,6 +30,12 @@ const Home = () => {
   }
   //*
 
+  //reset
+  const reset = () => {
+    dispatch(getRecipes());
+    paginate(1);
+  }
+
   useEffect(() => {
     //cuando se monta home se hace el dispatch
     console.log("Se monto home");
@@ -42,7 +48,6 @@ const Home = () => {
       <div className="grid_container">
         <header className="header">
           <h1>FOOD-API</h1>
-          <h4>by Manuel Seoane Torrealba</h4>
         </header>
         <nav className="navbar">
           <NavBar
@@ -53,14 +58,14 @@ const Home = () => {
           />
         </nav>
         <aside className="sidebar">
-          <SearchBar paginate={paginate}/>
+          <SearchBar paginate={paginate} reset={reset}/>
           <Filtro paginate={paginate}/>
           <Order paginate={paginate}/>
         </aside>
         <article className="main">
           <CardsContainer currentRecipes={currentRecipes} />
         </article>
-        <footer className="footer">FOOTER</footer>
+        <footer className="footer"><h4>by Manuel Seoane Torrealba</h4></footer>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { getRecipesByName } from "../../redux/actions";
 
 import "./searchBar.css";
 
-const SearchBar = ({paginate}) => {
+const SearchBar = ({ paginate, reset }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -32,6 +32,9 @@ const SearchBar = ({paginate}) => {
         }}
       >
         Search
+      </button>
+      <button className="buttonrecet" onClick={reset}>
+        Reset
       </button>
     </div>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getDiets, postRecipe } from "../../redux/actions";
-import recipeImgHolder from "../../assets/recipeImgHolder2.jpeg";
+import recipeImgHolder from "../../assets/recipeImgHolder.jpeg";
 import { validate } from "./validate";
 import { validateDiets } from "./validateDiets";
 import "./Form.css"
@@ -19,7 +19,9 @@ const createRecipe = () => {
   const diets = useSelector((state) => state.diets);
 
   const [checkboxes, setCheckboxes] = useState({});
-  const [checkBoxErrors, setCheckBoxErrors] = useState({})
+  const [checkBoxErrors, setCheckBoxErrors] = useState({
+    diets: "At least one diet is require",
+  })
   const [newRecipeSteps, setNewRecipeSteps] = useState([]);
   const [errors, setErrors] = useState({
     name: "Title required",
@@ -64,14 +66,12 @@ const createRecipe = () => {
 
     setNewRecipe({ ...newRecipe, [property]: value });
     setErrors(validate({ ...newRecipe, [property]: value }));
-    console.log(errors);
   };
 
   const handleCheckBox = (event) => {
     const { value, checked } = event.target;
     setCheckboxes({ ...checkboxes, [value]: checked });
     setCheckBoxErrors(validateDiets({ ...checkboxes, [value]: checked }));
-    console.log(errors);
   };
 
   const handleAddStep = (event) => {
@@ -92,7 +92,7 @@ const createRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //dispatch(postRecipe(newRecipe));
+    dispatch(postRecipe(newRecipe));
     alert("New recipe has been created");
     setNewRecipe({
       name: "",
@@ -102,7 +102,7 @@ const createRecipe = () => {
       steps: [],
       diets: [],
     });
-    //history.push("/home");
+    history.push("/home");
   };
 
   return (
@@ -149,6 +149,20 @@ const createRecipe = () => {
                 />
                 {errors.healthScore && (
                   <p className="error">{errors.healthScore}</p>
+                )}
+              </div>
+              <div>
+                <label>Image: </label>
+                <input
+                  type="text"
+                  className="input"
+                  value={newRecipe.imgUri}
+                  placeholder="https://www.example.com/images/picture.jpg"
+                  name="imgUri"
+                  onChange={handleChange}
+                />
+                {errors.imgUri && (
+                  <p className="error">{errors.imgUri}</p>
                 )}
               </div>
             </div>
@@ -198,10 +212,10 @@ const createRecipe = () => {
             </div>
             <div className="renderSteps">
               <ol>
-                {newRecipe.steps.map((step) => {
+                {newRecipe.steps.map((step,i) => {
                   return (
                     <>
-                      <li>{step}</li>
+                      <li key={i}>{step}</li>
                     </>
                   );
                 })}

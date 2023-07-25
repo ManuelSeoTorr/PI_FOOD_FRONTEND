@@ -28,27 +28,30 @@ body {
 
 .header {
   grid-area: header;
-  background-image: url("../../assets/backgroundImg/header_background2.jpg");
+  background-image: url("../../assets/backgroundImg/header_background.jpg");
   font-size: 1rem;
   font-style: italic;
-  color:  #e8e8e8;
+  color:  #000000;
   font-family: math;
 }
 
 .navbar {
   grid-area: navbar;
   background-color: #afd6af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar {
   grid-area: sidebar;
-  background-color: hwb(35 18% 6%);
+  background-color:  #e6bc82;
 }
 
 .footer {
   grid-area: footer;
-  background-color: #8c96a0;
-  background-image: url(../../assets/backgroundImg/footer_background.jpg);
+  /* background-color: #8c96a0; */
+  background-image: url("../../assets/backgroundImg/footer_background.jpg");
 }
 
 .main {
