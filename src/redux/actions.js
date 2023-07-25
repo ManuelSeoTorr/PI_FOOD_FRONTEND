@@ -1,4 +1,7 @@
 import axios from "axios";
+const URL = import.meta.env.VITE_BACKEND_URL;
+console.log(URL);
+axios.defaults.baseURL = URL
 import {
   GET_RECIPES,
   GET_ID_RECIPE,
@@ -13,7 +16,7 @@ import {
 
 export const getRecipes = () => {
   return async (dispatch) => {
-    const apiData = await axios.get("http://localhost:3001/recipes");
+    const apiData = await axios.get("/recipes");
     const recipes = apiData.data;
     console.log(apiData);
     dispatch({ type: GET_RECIPES, payload: recipes });
@@ -22,7 +25,7 @@ export const getRecipes = () => {
 
 export const getRecipeById = (id) => {
   return async (dispatch) => {
-    const apiData = await axios.get(`http://localhost:3001/recipes/${id}`);
+    const apiData = await axios.get(`/recipes/${id}`);
     const recipe = apiData.data;
     dispatch({ type: GET_ID_RECIPE, payload: recipe });
   };
@@ -32,7 +35,7 @@ export const getRecipesByName = (name) => {
   return async (dispatch) => {
     try {
       const apiData = await axios.get(
-        `http://localhost:3001/recipes?name=${name}`
+        `/recipes?name=${name}`
       );
       const recipes = apiData.data;
       dispatch({ type: GET_NAME_RECIPES, payload: recipes });
@@ -45,7 +48,7 @@ export const getRecipesByName = (name) => {
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      const apiData = await axios.get(`http://localhost:3001/diets`);
+      const apiData = await axios.get(`/diets`);
       const diets = apiData.data;
       dispatch({ type: GET_DIETS, payload: diets });
     } catch (error) {
@@ -61,7 +64,7 @@ export const resetDetail = () => {
 export const postRecipe = (newRecipe) => {
   return async () => {
     try {
-      apiRecipe = await axios.post("http://localhost:3001/recipes", newRecipe);
+      apiRecipe = await axios.post(`/recipes`, newRecipe);
     } catch (error) {
       alert(error);
     }

@@ -19,8 +19,15 @@ const createRecipe = () => {
   const diets = useSelector((state) => state.diets);
 
   const [checkboxes, setCheckboxes] = useState({});
+  const [checkBoxErrors, setCheckBoxErrors] = useState({})
   const [newRecipeSteps, setNewRecipeSteps] = useState([]);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name: "Title required",
+    summary: "Summary required",
+    healthScore: "Health Score required",
+    steps: "At least one step is require",
+    diets: "At least one diet is require",
+  });
   const [newRecipe, setNewRecipe] = useState({
     name: "",
     summary: "",
@@ -63,7 +70,7 @@ const createRecipe = () => {
   const handleCheckBox = (event) => {
     const { value, checked } = event.target;
     setCheckboxes({ ...checkboxes, [value]: checked });
-    setErrors(validateDiets({ ...checkboxes, [value]: checked }));
+    setCheckBoxErrors(validateDiets({ ...checkboxes, [value]: checked }));
     console.log(errors);
   };
 
@@ -85,11 +92,7 @@ const createRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    console.log(filterTrueProperties(checkboxes));
-
-    console.log(newRecipe)
-    dispatch(postRecipe(newRecipe));
+    //dispatch(postRecipe(newRecipe));
     alert("New recipe has been created");
     setNewRecipe({
       name: "",
@@ -152,7 +155,7 @@ const createRecipe = () => {
             <div className="inputsChecks">
               <fieldset className="checksContainer">
                 <legend>Select one or multiple diets</legend>
-                {errors.diets && <p className="error">{errors.diets}</p>}
+                {checkBoxErrors.diets && <p className="error">{checkBoxErrors.diets}</p>}
                 {diets.map((diet, i) => {
                   return (
                     <div className="checkOrganicer">
